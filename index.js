@@ -52,21 +52,20 @@ function playCorrectSound(randomValue){
 }
 
 
-
-
-// function buttonAnimation(currentButton){
-//     let buttonPress= document.querySelector("."+ currentButton);
-//     buttonPress.innerHTML.add("pressed");
-//     setTimeout(function(){
-//       buttonPress.classList.remove("pressed");
-//     },300);
-//   }
-
 for (let button of document.querySelectorAll(".press")) {
     button.addEventListener("click", function () {
       var buttonInnerHtml = this.innerHTML;
       playCorrectSound(buttonInnerHtml);
-    //   buttonAnimation(buttonInnerHtml);
+      // button select => this
+      const buttonScope = this;
+      // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+      // add 'pressed' class
+      buttonScope.classList.add("pressed");
+
+      setTimeout(function () {
+        buttonScope.classList.remove("pressed");
+      }, 400);
+      // set timer to remove 'pressed' class
     });
   }
 
